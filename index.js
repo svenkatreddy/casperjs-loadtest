@@ -1,3 +1,6 @@
+#! /usr/bin/env node
+'use strict';
+
 const exec = require('child_process').exec;
 const argv = require('minimist')(process.argv.slice(2));
 const debug = require('debug')('casperjs-loadtest');
@@ -8,7 +11,7 @@ const samples = argv.s || 1;
 const concurrency = argv.c || 1;
 
 if(!file) {
-  return new Error('cannot find --file option');
+  return console.error('cannot find --file option');
 }
 
 if(!samples) {
@@ -38,7 +41,7 @@ const executeTheCommand = function(cmd) {
   });   
 };
 
-const doAnotherSample = () => {
+const doAnotherSample = () => { 
   if(samplesCount < samples) {
     doConcurrency();
     samplesCount += 1;
@@ -48,7 +51,7 @@ const doAnotherSample = () => {
 const doConcurrency = () => {
   const promisesArray = [];
 
-  for(const i=0; i<concurrency; i += 1) {
+  for(let i=0; i<concurrency; i += 1) {
     promisesArray.push(
       executeTheCommand(cmdToExecute)
     );
