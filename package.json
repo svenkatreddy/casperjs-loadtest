@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/svenkatreddy/casperjs-loadtest#readme",
   "dependencies": {
-    "debug": "^2.6.8",
+    "debug": "^4.1.1",
     "execution-time": "^1.2.0",
     "minimist": "^1.2.0"
   }
